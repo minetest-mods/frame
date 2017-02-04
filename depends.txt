@@ -1,0 +1,13 @@
+default
+beds?
+boats?
+bucket?
+carts?
+doors?
+dye?
+farming?
+fire?
+flowers?
+tnt?
+vessels?
+wool?
