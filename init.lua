@@ -145,11 +145,8 @@ function frame.register(name)
 	end
 	assert(def, name .. " is not a known node or item")
 
-	local desc = def.description
-	local nodename = def.name:gsub(":", "_")
-
-	minetest.register_node("frame:" .. nodename, {
-		description = "Item Frame with " .. desc,
+	minetest.register_node("frame:" .. name:gsub(":", "_"), {
+		description = "Item Frame with " .. def.description,
 		drawtype = "mesh",
 		mesh = "frame.obj",
 		tiles = tiles,
@@ -157,16 +154,26 @@ function frame.register(name)
 		paramtype2 = "wallmounted",
 		sunlight_propagates = true,
 		collision_box = {
-			type = "fixed",
-			fixed = {-1/2, -1/2, 3/8, 1/2, 1/2, 1/2},
+			type = "wallmounted",
+			wall_side = {-1/2, -1/2, -1/2, -3/8, 1/2, 1/2},
 		},
 		selection_box = {
-			type = "fixed",
-			fixed = {-1/2, -1/2, 3/8, 1/2, 1/2, 1/2},
+			type = "wallmounted",
+			wall_side = {-1/2, -1/2, -1/2, -3/8, 1/2, 1/2},
 		},
 		sounds = default.node_sound_defaults(),
 		groups = {attached_node = 1, oddly_breakable_by_hand = 1, snappy = 3, not_in_creative_inventory = 1},
 		frame_contents = name,
+		drop = {
+			max_items = 2,
+			items = {
+				{
+					items = {"frame:empty"}, -- FIXME
+					-- 'name' should be in there but this would allow free repair
+					rarity = 1,
+				},
+			},
+		},
 		on_punch = frame_on_punch,
 	})
 end
@@ -189,12 +196,12 @@ minetest.register_node("frame:empty", {
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
 	collision_box = {
-		type = "fixed",
-		fixed = {-1/2, -1/2, 3/8, 1/2, 1/2, 1/2},
+		type = "wallmounted",
+		wall_side = {-1/2, -1/2, -1/2, -3/8, 1/2, 1/2},
 	},
 	selection_box = {
-		type = "fixed",
-		fixed = {-1/2, -1/2, 3/8, 1/2, 1/2, 1/2},
+		type = "wallmounted",
+		wall_side = {-1/2, -1/2, -1/2, -3/8, 1/2, 1/2},
 	},
 	sounds = default.node_sound_defaults(),
 	groups = {attached_node = 1, oddly_breakable_by_hand = 3, cracky = 1},
