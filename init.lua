@@ -153,10 +153,7 @@ function frame.register(name)
 		paramtype = "light",
 		paramtype2 = "wallmounted",
 		sunlight_propagates = true,
-		collision_box = {
-			type = "wallmounted",
-			wall_side = {-1/2, -1/2, -1/2, -3/8, 1/2, 1/2},
-		},
+		walkable = false,
 		selection_box = {
 			type = "wallmounted",
 			wall_side = {-1/2, -1/2, -1/2, -3/8, 1/2, 1/2},
@@ -195,10 +192,7 @@ minetest.register_node("frame:empty", {
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
-	collision_box = {
-		type = "wallmounted",
-		wall_side = {-1/2, -1/2, -1/2, -3/8, 1/2, 1/2},
-	},
+	walkable = false,
 	selection_box = {
 		type = "wallmounted",
 		wall_side = {-1/2, -1/2, -1/2, -3/8, 1/2, 1/2},
