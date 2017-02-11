@@ -51,13 +51,13 @@ local function frame_on_rightclick(pos, node, clicker, itemstack, pointed_thing)
 		local name = clicker:get_player_name()
 		if minetest.is_protected(pos, name) then
 			minetest.record_protection_violation(pos, name)
-			return false
+			return itemstack
 		end
 	end
 
 	local nodename = itemstack:get_name()
 	if not nodename then
-		return false
+		return itemstack
 	end
 
 	local wear = itemstack:get_wear()
@@ -74,7 +74,10 @@ local function frame_on_rightclick(pos, node, clicker, itemstack, pointed_thing)
 	local name = "frame:" .. nodename:gsub(":", "_")
 	local def = minetest.registered_nodes[name]
 	if not def then
-		return false
+		def = minetest.registered_items[name]
+		if not def then
+			return itemstack
+		end
 	end
 	minetest.sound_play(def.sounds.place, {pos = pos})
 	minetest.swap_node(pos, {name = name, param2 = node.param2})
@@ -145,12 +148,12 @@ function frame.register(name)
 	local nodename = def.name:gsub(":", "_")
 
 	minetest.register_node("frame:" .. nodename, {
-		description = "Frame with " .. desc,
+		description = "Item Frame with " .. desc,
 		drawtype = "mesh",
 		mesh = "frame.obj",
 		tiles = tiles,
 		paramtype = "light",
-		paramtype2 = "facedir",
+		paramtype2 = "wallmounted",
 		sunlight_propagates = true,
 		collision_box = {
 			type = "fixed",
@@ -161,7 +164,7 @@ function frame.register(name)
 			fixed = {-1/2, -1/2, 3/8, 1/2, 1/2, 1/2},
 		},
 		sounds = default.node_sound_defaults(),
-		groups = {oddly_breakable_by_hand = 1, snappy = 3, not_in_creative_inventory = 1},
+		groups = {attached_node = 1, oddly_breakable_by_hand = 1, snappy = 3, not_in_creative_inventory = 1},
 		frame_contents = name,
 		on_punch = frame_on_punch,
 	})
@@ -169,9 +172,11 @@ end
 
 -- empty frame
 minetest.register_node("frame:empty", {
-	description = "Frame",
+	description = "Item Frame",
 	drawtype = "mesh",
 	mesh = "frame.obj",
+	inventory_image = "frame_frame.png",
+	wield_image = "frame_frame.png",
 	tiles = {
 		{name = "frame_frame.png"},
 		{name = "doors_blank.png"},
@@ -180,7 +185,7 @@ minetest.register_node("frame:empty", {
 		{name = "doors_blank.png"},
 	},
 	paramtype = "light",
-	paramtype2 = "facedir",
+	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
 	collision_box = {
 		type = "fixed",
@@ -191,7 +196,7 @@ minetest.register_node("frame:empty", {
 		fixed = {-1/2, -1/2, 3/8, 1/2, 1/2, 1/2},
 	},
 	sounds = default.node_sound_defaults(),
-	groups = {oddly_breakable_by_hand = 3, cracky = 1},
+	groups = {attached_node = 1, oddly_breakable_by_hand = 3, cracky = 1},
 	on_rightclick = frame_on_rightclick,
 })
 
@@ -386,6 +391,8 @@ for _, node in pairs({
 	"default:clay_brick",
 	"default:obsidian_shard",
 	"default:flint",
+	"default:key",
+	"default:skeleton_key",
 	"nyancat:nyancat",
 	"nyancat:nyancat_rainbow",
 	"vessels:shelf",
@@ -401,6 +408,7 @@ for _, node in pairs({
 	"doors:trapdoor_steel",
 	"beds:bed",
 	"beds:fancy_bed",
+	"boats:boat",
 	"carts:cart",
 	"carts:rail",
 	"carts:powerrail",
@@ -442,6 +450,9 @@ for _, node in pairs({
 	"dye:pink",
 	"dye:dark_grey",
 	"dye:dark_green",
+	"xpanes:pane_flat",
+	"xpanes:bar_flat",
+	"flowerpot:empty",
 }) do
 	frame.register(node)
 end
