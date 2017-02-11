@@ -129,7 +129,7 @@ function frame.register(name)
 				{name = "doors_blank.png"},
 				{name = def.tiles[1] and def.tiles[1].name or def.tiles[1]
 					or "doors_blank.png"},
-				{name = def.tiles[2] and def.tiles[2].name or def.tiles[1]
+				{name = def.tiles[2] and def.tiles[2].name or def.tiles[2]
 					or def.tiles[1] and def.tiles[1].name or def.tiles[1]
 					or "doors_blank.png"},
 				{name = def.tiles[3] and def.tiles[3].name or def.tiles[3]
