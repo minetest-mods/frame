@@ -161,16 +161,7 @@ function frame.register(name)
 		sounds = default.node_sound_defaults(),
 		groups = {attached_node = 1, oddly_breakable_by_hand = 1, snappy = 3, not_in_creative_inventory = 1},
 		frame_contents = name,
-		drop = {
-			max_items = 2,
-			items = {
-				{
-					items = {"frame:empty"}, -- FIXME
-					-- 'name' should be in there but this would allow free repair
-					rarity = 1,
-				},
-			},
-		},
+		drop = "frame:empty", -- FIXME item should be in there but this would allow free repair
 		on_punch = frame_on_punch,
 	})
 end
