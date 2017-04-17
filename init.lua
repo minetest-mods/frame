@@ -95,7 +95,11 @@ function frame.register(name)
 	if not def then
 		-- item?
 		def = minetest.registered_items[name]
-		assert(def, "not a thing: ".. name)
+		if not def then
+			-- nonexistant item.
+			minetest.log("warning", "Frame registered for \"" .. name .. "\" but it isn't registered")
+			return
+		end
 		assert(def.inventory_image, "no inventory image for " .. name)
 
 		tiles = {
