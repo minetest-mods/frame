@@ -89,6 +89,8 @@ end
 
 function frame.register(name)
 	assert(name, "no content passed")
+	assert(string.sub(name, 1, 1) ~= ":", "name must not start with ':'")
+
 	local tiles
 
 	local def = minetest.registered_nodes[name]
@@ -149,7 +151,7 @@ function frame.register(name)
 	end
 	assert(def, name .. " is not a known node or item")
 
-	minetest.register_node("frame:" .. name:gsub(":", "_"), {
+	minetest.register_node(":frame:" .. name:gsub(":", "_"), {
 		description = "Item Frame with " .. def.description,
 		drawtype = "mesh",
 		mesh = "frame.obj",
