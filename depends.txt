@@ -9,6 +9,7 @@ farming?
 fire?
 flowerpot?
 flowers?
+shields?
 tnt?
 vessels?
 wool?
