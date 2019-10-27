@@ -81,7 +81,7 @@ local function frame_on_rightclick(pos, node, clicker, itemstack, pointed_thing)
 	end
 	minetest.sound_play(def.sounds.place, {pos = pos})
 	minetest.swap_node(pos, {name = name, param2 = node.param2})
-	if not minetest.setting_getbool("creative_mode") then
+	if not minetest.settings:get_bool("creative_mode") then
 		itemstack:take_item()
 	end
 	return itemstack
@@ -218,6 +218,9 @@ for _, node in pairs({
 	"bucket:bucket_lava",
 	"bucket:bucket_river_water",
 	"bucket:bucket_water",
+	"butterflies:butterfly_white",
+	"butterflies:butterfly_red",
+	"butterflies:butterfly_violet",
 	"carts:brakerail",
 	"carts:cart",
 	"carts:powerrail",
@@ -265,6 +268,10 @@ for _, node in pairs({
 	"default:coral_brown",
 	"default:coral_orange",
 	"default:coral_skeleton",
+	"default:coral_green",
+	"default:coral_pink",
+	"default:coral_cyan",
+	"default:cave_ice",
 	"default:desert_cobble",
 	"default:desert_sand",
 	"default:desert_stone",
@@ -277,14 +284,27 @@ for _, node in pairs({
 	"default:dirt_with_grass",
 	"default:dirt_with_grass_footsteps",
 	"default:dirt_with_snow",
+	"default:dirt_with_rainforest_litter",
+	"default:dirt_with_coniferous_litter",
+	"default:permafrost",
+	"default:permafrost_with_stones",
 	"default:dry_grass_1",
 	"default:dry_grass_2",
 	"default:dry_grass_3",
 	"default:dry_grass_4",
 	"default:dry_grass_5",
 	"default:dry_shrub",
+	"default:emergent_jungle_sapling",
 	"default:flint",
 	"default:furnace",
+	"default:fence_rail_aspen_wood",
+	"default:fence_rail_pine_wood",
+	"default:fence_rail_wood",
+	"default:fence_rail_acacia_wood",
+	"default:fence_rail_junglewood",
+	"default:fern_1",
+	"default:fern_2",
+	"default:fern_3",
 	"default:glass",
 	"default:goldblock",
 	"default:gold_ingot",
@@ -308,6 +328,7 @@ for _, node in pairs({
 	"default:lava_flowing",
 	"default:lava_source",
 	"default:leaves",
+	"default:large_cactus_seedling",
 	"default:mese",
 	"default:mese_crystal",
 	"default:mese_crystal_fragment",
@@ -372,6 +393,10 @@ for _, node in pairs({
 	"default:water_flowing",
 	"default:water_source",
 	"default:wood",
+	"default:marram_grass_1",
+	"default:marram_grass_2",
+	"default:marram_grass_3",
+	"default:sand_with_kelp",
 	"doors:door_glass",
 	"doors:door_obsidian_glass",
 	"doors:door_steel",
@@ -435,6 +460,13 @@ for _, node in pairs({
 	"flowers:tulip",
 	"flowers:viola",
 	"flowers:waterlily",
+	"flowers:chrysanthemum_green",
+	"flowers:tulip_black",
+	"fireflies:firefly",
+	"fireflies:bug_net",
+	"fireflies:firefly_bottle",
+	"nyancat:nyancat",
+	"nyancat:nyancat_rainbow",
 	"screwdriver:screwdriver",
 	"tnt:gunpowder",
 	"vessels:drinking_glass",
@@ -459,10 +491,12 @@ for _, node in pairs({
 	"wool:yellow",
 	"xpanes:bar_flat",
 	"xpanes:pane_flat",
+	"xpanes:obsidian_pane",
+	"binoculars:binoculars",
+	"map:mapping_kit",
 }) do
 	frame.register(node)
 end
 
 -- inception!
 frame.register("frame:empty")
-
