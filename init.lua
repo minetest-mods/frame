@@ -12,6 +12,9 @@
 
 frame = {}
 
+-- Used for localization
+S = minetest.get_translator("frame")
+
 -- handle node removal from frame
 local function frame_on_punch(pos, node, puncher, pointed_thing)
 	if puncher and not minetest.check_player_privs(puncher, "protection_bypass") then
@@ -152,7 +155,7 @@ function frame.register(name)
 	assert(def, name .. " is not a known node or item")
 
 	minetest.register_node(":frame:" .. name:gsub(":", "_"), {
-		description = "Item Frame with " .. def.description,
+		description = S("Item Frame with ") .. def.description,
 		drawtype = "mesh",
 		mesh = "frame.obj",
 		tiles = tiles,
@@ -174,7 +177,7 @@ end
 
 -- empty frame
 minetest.register_node("frame:empty", {
-	description = "Item Frame",
+	description = S("Item Frame"),
 	drawtype = "mesh",
 	mesh = "frame.obj",
 	inventory_image = "frame_frame.png",
