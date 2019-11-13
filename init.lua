@@ -13,7 +13,7 @@
 frame = {}
 
 -- Used for localization
-S = minetest.get_translator("frame")
+local S = minetest.get_translator("frame")
 
 -- handle node removal from frame
 local function frame_on_punch(pos, node, puncher, pointed_thing)
