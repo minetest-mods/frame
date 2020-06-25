@@ -216,7 +216,8 @@ for i, node in pairs(minetest.registered_items) do
         and node.drawtype ~= "airlike" and node.drawtype
         ~= "nodebox" and node.drawtype ~= "mesh" then
         items_to_frame[i] = node.name
-    elseif (node.drawtype == "nodebox" or node.drawtype == "mesh") and node.inventory_image ~= "" then
+    elseif (node.drawtype == "nodebox"
+        or node.drawtype == "mesh") and node.inventory_image ~= "" then
         items_to_frame[i] = node.name
     end
 end
