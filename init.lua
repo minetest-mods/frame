@@ -211,7 +211,7 @@ minetest.register_craft({
 
 local items_to_frame = {}
 
-for i, node in pairs(minetest.registered_items) do
+for _, node in pairs(minetest.registered_items) do
     if minetest.get_item_group(node.name, "not_in_creative_inventory") == 0
         and node.drawtype ~= "airlike" and node.drawtype
         ~= "nodebox" and node.drawtype ~= "mesh")
