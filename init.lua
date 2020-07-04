@@ -218,7 +218,7 @@ for i, node in pairs(minetest.registered_items) do
         items_to_frame[i] = node.name
     elseif (node.drawtype == "nodebox"
         or node.drawtype == "mesh") and node.inventory_image ~= "" then
-        items_to_frame[i] = node.name
+        table.insert(items_to_frame, node.name)
     end
 end
 
