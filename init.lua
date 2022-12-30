@@ -12,6 +12,8 @@
 
 frame = {}
 
+local ALPHA_CLIP = minetest.features.use_texture_alpha_string_modes and "clip" or true
+
 -- handle node removal from frame
 local function frame_on_punch(pos, node, puncher, pointed_thing)
 	if puncher and not minetest.check_player_privs(puncher, "protection_bypass") then
@@ -160,6 +162,7 @@ function frame.register(name)
 		paramtype2 = "wallmounted",
 		sunlight_propagates = true,
 		walkable = false,
+		use_texture_alpha = ALPHA_CLIP,
 		selection_box = {
 			type = "wallmounted",
 			wall_side = {-1/2, -1/2, -1/2, -3/8, 1/2, 1/2},
@@ -190,6 +193,7 @@ minetest.register_node("frame:empty", {
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
 	walkable = false,
+	use_texture_alpha = ALPHA_CLIP,
 	selection_box = {
 		type = "wallmounted",
 		wall_side = {-1/2, -1/2, -1/2, -3/8, 1/2, 1/2},
