@@ -109,9 +109,9 @@ function frame.register(name)
 		tiles = {
 			{name = "frame_frame.png"},
 			{name = def.inventory_image},
-			{name = "doors_blank.png"},
-			{name = "doors_blank.png"},
-			{name = "doors_blank.png"},
+			{name = "blank.png"},
+			{name = "blank.png"},
+			{name = "blank.png"},
 		}
 	else
 		-- node
@@ -119,35 +119,35 @@ function frame.register(name)
 			-- custom inventory override image first.
 			tiles = {
 				{name = "frame_frame.png"},
-				{name = def.inventory_image or "doors_blank.png"},
-				{name = "doors_blank.png"},
-				{name = "doors_blank.png"},
-				{name = "doors_blank.png"},
+				{name = def.inventory_image or "blank.png"},
+				{name = "blank.png"},
+				{name = "blank.png"},
+				{name = "blank.png"},
 			}
 		elseif def.drawtype ~= "normal" then
 			-- use tiles[1] only, but on frame
 			tiles = {
 				{name = "frame_frame.png"},
-				{name = def.tiles[1] and def.tiles[1].name or def.tiles[1] or "doors_blank.png"},
-				{name = "doors_blank.png"},
-				{name = "doors_blank.png"},
-				{name = "doors_blank.png"},
+				{name = def.tiles[1] and def.tiles[1].name or def.tiles[1] or "blank.png"},
+				{name = "blank.png"},
+				{name = "blank.png"},
+				{name = "blank.png"},
 			}
 		else -- type(def.tiles[1]) == "table" then
 			-- multiple tiles
 			tiles = {
 				{name = "frame_frame.png"},
-				{name = "doors_blank.png"},
+				{name = "blank.png"},
 				{name = def.tiles[1] and def.tiles[1].name or def.tiles[1]
-					or "doors_blank.png"},
+					or "blank.png"},
 				{name = def.tiles[2] and def.tiles[2].name or def.tiles[2]
 					or def.tiles[1] and def.tiles[1].name or def.tiles[1]
-					or "doors_blank.png"},
+					or "blank.png"},
 				{name = def.tiles[6] and def.tiles[6].name or def.tiles[6]
 				        or def.tiles[3] and def.tiles[3].name or def.tiles[3]
 					or def.tiles[2] and def.tiles[2].name or def.tiles[2]
 					or def.tiles[1] and def.tiles[1].name or def.tiles[1]
-					or "doors_blank.png"},
+					or "blank.png"},
 			}
 		end
 	end
@@ -184,10 +184,10 @@ minetest.register_node("frame:empty", {
 	wield_image = "frame_frame.png",
 	tiles = {
 		{name = "frame_frame.png"},
-		{name = "doors_blank.png"},
-		{name = "doors_blank.png"},
-		{name = "doors_blank.png"},
-		{name = "doors_blank.png"},
+		{name = "blank.png"},
+		{name = "blank.png"},
+		{name = "blank.png"},
+		{name = "blank.png"},
 	},
 	paramtype = "light",
 	paramtype2 = "wallmounted",
